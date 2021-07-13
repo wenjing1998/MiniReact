@@ -1,4 +1,6 @@
 // And that’s it. We now have a library that can render JSX to the DOM.
+
+// To render a React element into a root DOM node
 const render = (element, container) => {
   // element = {
   //   type: 'div',

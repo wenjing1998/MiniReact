@@ -1,5 +1,6 @@
 
 const createElement = (type, props, ...children) => {
+  // createElement 为什么想要输出 object 呢？
   return {
     type,
     props: {

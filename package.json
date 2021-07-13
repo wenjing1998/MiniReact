@@ -1,0 +1,22 @@
+{
+  "name": "minireact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wenjing1998/MiniReact.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "wenjing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wenjing1998/MiniReact/issues"
+  },
+  "homepage": "https://github.com/wenjing1998/MiniReact#readme"
+}

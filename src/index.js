@@ -50,13 +50,13 @@ import MiniReact from './MiniReact';
 
 // 'React' must be in scope when using JSX  react/react-in-jsx-scope
 /** @jsx MiniReact.createElement */
-const element = (
-  // Warning: Style prop value must be an object.  (by react/style-prop-object)
-  <div style="background-color: salmon">
-    <h1>Hello World!</h1>
-    <h2 style="text-align: right">from MiniReact</h2>
-  </div>
-);
+// const element = (
+//   // Warning: Style prop value must be an object.  (by react/style-prop-object)
+//   <div style="background-color: salmon">
+//     <h1>Hello World!</h1>
+//     <h2 style="text-align: right">from MiniReact</h2>
+//   </div>
+// );
 
 // Babel 将上述 JSX 语句转义为以下语句：
 // const element = React.createElement("div", {
@@ -68,12 +68,69 @@ const element = (
 //   }, "from MiniReact")
 // );
 
+/** @jsx MiniReact.createElement */
+function App(props) {
+  return <h1>Hi {props.name}</h1>
+};
+
+// function App(props) {
+//   return MiniReact.createElement(
+//     'h1',
+//     null,
+//     'Hi',
+//     props.name
+//   );
+// };
+
+const element = <App name="foo" />;
+
+// MiniReact.createElement(
+//   App, {
+//     name: 'foo'
+//   }
+// );
+
 const container = document.getElementById('root');
 
+// const updateValue = e => {
+//   // console.log('updateValue e.target.value', e.target.value);
+//   rerender(e.target.value);
+// };
 
 // step II: The render Function
 
-
 // ReactDOM.render(element, container);
 MiniReact.render(element, container);
+
+// const rerender = value => {
+//   /** @jsx MiniReact.createElement */
+//   const element = (
+//     <div>
+//       <input onInput={updateValue} value={value} />
+//       <h2>Hello {value}</h2>
+//     </div>
+//   );
+//   MiniReact.render(element, container);
+// };
+
+// 过程 createElement（input） -> createTextElement('Hello') -> createTextElement('world')
+// -> createElement(h2) -> createElement(div)
+
+// const element = MiniReact.createElement(
+//   "div",
+//   null,
+//   MiniReact.createElement(
+//     "input", {
+//     onInput: updateValue,
+//     value: value
+//   }),
+//   MiniReact.createElement(
+//     "h2",
+//     null,
+//     "Hello ",
+//     value
+//   )
+// );
+
+// rerender('World');
 

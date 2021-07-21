@@ -342,12 +342,57 @@ function performUnitOfWork(fiber) {
   // 最后没有返回根节点（root）的场景？
 };
 
+let wipFiber = null;
+let hookIndex = null;
+
 function updateFunctionComponent(fiber) {
+  wipFiber = fiber;
+  hookIndex = 0;
+  wipFiber.hooks = [];
   // TODO run the function to get the children
   const children = [fiber.type(fiber.props)];
   // 注意 children 是数组，但是执行了函数之后得到的是什么呢，是一个fiber tree吧？
   // 此时的 fiber 是没有 dom 的，因为是 Function Component
   reconcileChildren(fiber, children);
+};
+
+const useState = (initial) => {
+  // TODO
+  const oldHook =
+    wipFiber.alternate &&
+    wipFiber.alternate.hooks &&
+    wipFiber.alternate.hooks[hookIndex];
+  console.log('useState oldHook', oldHook);
+
+  const hook = {
+    state: oldHook ? oldHook.state : initial,
+    queue: []
+  };
+  console.log('useState hook', hook);
+
+  const actions = oldHook ? oldHook.queue : [];
+
+  console.log('setState actions', actions);
+  actions.forEach(action => {
+    // 故此处的 action 可以省略参数，直接写结果，例如 setState(c => c + 1) 简写成 setState(c + 1)
+    hook.state = action(hook.state);
+  });
+
+  const setState = action => {
+    hook.queue.push(action);
+    // set a new work in progress root as the next unit of work so the work loop can start a new render phase.?
+    wipRoot = {
+      dom: currentRoot.dom,
+      props: currentRoot.props,
+      alternate: currentRoot
+    };
+    nextUnitOfWork = wipRoot;
+    deletions = [];
+  };
+
+  wipFiber.hooks.push(hook);
+  hookIndex++;
+  return [hook.state, setState];
 };
 
 function updateHostComponent(fiber) {
@@ -457,5 +502,5 @@ function reconcileChildren(wipFiber, elements) {
   }
 };
 
-export default render;
+export { render, useState };
 

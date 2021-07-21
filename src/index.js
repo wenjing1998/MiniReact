@@ -69,9 +69,9 @@ import MiniReact from './MiniReact';
 // );
 
 /** @jsx MiniReact.createElement */
-function App(props) {
-  return <h1>Hi {props.name}</h1>
-};
+// function App(props) {
+//   return <h1>Hi {props.name}</h1>
+// };
 
 // function App(props) {
 //   return MiniReact.createElement(
@@ -82,13 +82,27 @@ function App(props) {
 //   );
 // };
 
-const element = <App name="foo" />;
+// const element = <App name="foo" />;
 
 // MiniReact.createElement(
 //   App, {
 //     name: 'foo'
 //   }
 // );
+
+/** @jsx MiniReact.createElement */
+function Counter() {
+  const [state, setState] = MiniReact.useState(1);
+
+  // increments 增量
+  return (
+    <h1 onClick={() => setState(c => c + 1)}>
+      Count: {state}
+    </h1>
+  );
+};
+
+const element = <Counter />;
 
 const container = document.getElementById('root');
 

@@ -1,46 +1,6 @@
 // And that’s it. We now have a library that can render JSX to the DOM.
 
-// To render a React element into a root DOM node
-// a recursive call
-// const render = (element, container) => {
-//   // element = {
-//   //   type: 'div',
-//   //   props: {
-//   //     name: 'foo',
-//   //     children: []
-//   //   }
-//   // }
-  
-//   // type
-//   const dom = element.type === 'TEXT_ELEMENT'
-//     ? document.createTextNode('')
-//     : document.createElement(element.type);
-
-//   // props
-//   const isProperty = key => key !== 'children';
-//   Object.keys(element.props)
-//     .filter(isProperty)
-//     .forEach(name => {
-//       dom[name] = element.props[name];
-//     });
-
-//   // children
-//   element.props.children.forEach(child =>
-//     // recursively 递归地
-//     render(child, dom)
-//   );
-
-//   container.appendChild(dom);
-// };
-
 // Concurrent Mode （并发模式是否稳定？）
-
-// 优化： There’s a problem with this recursive call.
-
-// Once we start rendering, we won’t stop until we have rendered the complete element tree. 
-// If the element tree is big, it may block the main thread for too long. 
-// And if the browser needs to do high priority stuff like handling user input or keeping an animation smooth, 
-// it will have to wait until the render finishes.
 
 let wipRoot = null;
 let currentRoot = null;

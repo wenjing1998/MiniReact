@@ -4,6 +4,7 @@ import MiniReact from "../MiniReact";
 
 /** @jsx MiniReact.createElement */
 const Counter = () => {
+  console.log('我怀疑触发了一次state更新，组件就会重新走一遍，useState方法也会重新执行一遍。');
   const [state, setState] = MiniReact.useState(0);
 
   // increments 增量

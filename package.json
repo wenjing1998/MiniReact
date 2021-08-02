@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/wenjing1998/MiniReact#readme",
   "dependencies": {
+    "node-sass": "^6.0.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-scripts": "3.0.1"

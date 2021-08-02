@@ -11,7 +11,7 @@ const Counter = () => {
   const handleClick = () => {
     setTimeout(() => {
       setState(count => count + 1);
-      console.log('state', state);  // 打印拿的是上一次的
+      // console.log('state', state);  // 打印拿的是上一次的
     }, 1000);
   };
 

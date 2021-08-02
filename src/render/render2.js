@@ -202,7 +202,7 @@ function updateFunctionComponent(fiber) {
 // const element = <Counter />;
 
 const useState = (initial) => {
-  console.log('useState 何时执行？');
+  // console.log('useState 何时执行？');
   const oldHook =
     wipFiber.alternate &&
     wipFiber.alternate.hooks &&
@@ -220,7 +220,7 @@ const useState = (initial) => {
   });
 
   const setState = action => {
-    console.log('setState'); // 执行了三次
+    // console.log('setState'); // 执行了三次
     hook.queue.push(action);
     // console.log('wipRoot before', wipRoot);//null
     // 考虑这中间是不是有其他方法在实现？
@@ -237,7 +237,7 @@ const useState = (initial) => {
 
   wipFiber.hooks.push(hook);
   hookIndex++;
-  console.log('wipFiber.hooks', wipFiber.hooks); // 放置多个不同的setState
+  // console.log('wipFiber.hooks', wipFiber.hooks); // 放置多个不同的setState
   return [hook.state, setState];
 };
 

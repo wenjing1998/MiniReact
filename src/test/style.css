@@ -1,0 +1,22 @@
+.containerDiv::before {
+  content: '';
+
+  width: 500px;
+  height: 500px;
+  top: 0;
+  left: 0;
+  position: absolute;
+
+  z-index: -1;
+  filter: blur(30px);
+
+  /* background-image: url('https://sf3-ttcdn-tos.pstatp.com/img/user-avatar/69799d96b9fca04f674d3007f1c41a92~300x300.image'); */
+  background-image: url('https://avatars.githubusercontent.com/u/51306705?s=400&u=79e65d18f14b02c2403aa6a11fb7f781cfacbcdd&v=4');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  opacity: 1;
+  transform-origin: center center;
+  /* transform: scale(1.5); overflow hidden 无法遮住 transform scale ？ */
+  overflow: hidden;
+}

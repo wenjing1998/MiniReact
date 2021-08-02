@@ -1,4 +1,4 @@
-import './test/demo8.js';
+import './test/demo10.js';
 
 // const node = document.createElement(element.type);
 // node['title'] = element.props.title;

@@ -96,9 +96,10 @@ function getCountsArr(pixelData) {
 };
 
 const Color = () => {
-  const pig = 'https://sf3-ttcdn-tos.pstatp.com/img/user-avatar/69799d96b9fca04f674d3007f1c41a92~300x300.image';
+  // const pig = 'https://sf3-ttcdn-tos.pstatp.com/img/user-avatar/69799d96b9fca04f674d3007f1c41a92~300x300.image';
   // const girl = 'https://avatars.githubusercontent.com/u/51306705?s=400&u=79e65d18f14b02c2403aa6a11fb7f781cfacbcdd&v=4';
-  const blue = 'https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6062f650d53448eab2279330f944064e~tplv-k3u1fbpfcp-watermark.image';
+  // const blue = 'https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6062f650d53448eab2279330f944064e~tplv-k3u1fbpfcp-watermark.image';
+  const linked = 'https://www.electronjs.org/images/app-img/linked/linked-icon-64.3df2033e7f70c0ce6ee318012031e216.png';
 
   const divStyle = {
     border: '1px solid black',
@@ -121,7 +122,7 @@ const Color = () => {
     // 即使在useEffect处去取也拿不到img的颜色信息？
     // 1、目标：获取到图片主题 color 设置为父级 div 的背景颜色。
     // 异步编程的方式：promise、回调函数、事件模型
-    getMainColor(blue).then(color => {
+    getMainColor(linked).then(color => {
       console.log('useEffect color', color);
       const containerDiv = document.getElementById('containerDiv');
       containerDiv.style.backgroundColor = color;
@@ -130,7 +131,7 @@ const Color = () => {
 
   return (
     <div id="containerDiv" style={divStyle}>
-      <img id="img" src={blue} alt="blue" width="100px" height="100px" />
+      <img id="img" src={linked} alt="linked" width="100px" height="100px" />
     </div>
   );
 };

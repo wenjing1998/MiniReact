@@ -12,7 +12,7 @@ class Watermark {
       fontFamily: fontFamily || 'Arial',
       color: color || 'black',
       alpha: alpha || 1,
-      rotate: rotate || 30,
+      rotate: rotate || 135,
       ...opts
     };
     this.text = text || '水印';
@@ -33,9 +33,11 @@ class Watermark {
     canvas.font = `${this.options.fontSize} ${this.options.fontFamily}`;
     canvas.globalAlpha = this.options.alpha;
 
-    canvas.translate(Math.floor(this.options.width / 6), Math.floor(this.options.height / 2));
+    canvas.translate(Math.floor(this.options.width / 2), Math.floor(this.options.height / 2));
     canvas.rotate(-this.options.rotate * Math.PI / 180);
-    canvas.fillText(this.text, 0, 0);
+    // canvas.fillText(this.text, 0, 0);
+    // 如何画倒三角
+    canvas.fillRect(0, 0, 100, 100);
     canvas.fillStyle = this.options.color;
 
     return element.toDataURL();
@@ -132,15 +134,41 @@ const Picture = () => {
     width: '500px',
     height: '500px',
     border: '1px solid black',
-    textAlign: 'center',
     position: 'relative'
   };
 
   useWaterMark();
 
+  const handleDrag = () => {};
+
+  const handleDrop = e => {
+    // console.log('drop event', e);
+    e.preventDefault();
+    const element = document.getElementById('img');
+    // console.log('e.pageX', e.pageX);
+    // console.log('e.pageY', e.pageY);
+    const top = Math.round(e.pageY / 100) * 100;
+    const left = Math.round(e.pageX / 100) * 100;
+    // console.log('top', top);
+    // console.log('left', left);
+    element.style = `
+      position: absolute;
+      top: ${top}px;
+      left: ${left}px;
+    `;
+  };
+
+  const handleDragStart = () => {};
+
+  const handleDragOver = e => {
+    // 必须，否则不会触发 drop 方法
+    e.preventDefault();
+  };
+
   return (
-    <div style={divStyle} id="divContainer">
-      <img src={girl} alt="girl" width="100px" height="100px" />
+    <div style={divStyle} id="divContainer" onDrop={handleDrop} onDragOver={handleDragOver}>
+      <img id="img" src={girl} alt="girl" width="100px" height="100px"
+        onDrag={handleDrag} onDragStart={handleDragStart} draggable="true" />
     </div>
   );
 };
